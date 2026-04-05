@@ -191,7 +191,7 @@ async fn handle_connection(
     
     let mut heartbeat_interval = interval(HEARTBEAT_INTERVAL);
     let mut last_pong = tokio::time::Instant::now();
-    let mut subscribed_channels: Vec<String> = vec!["prices", "positions", "orders", "signals", "logs"];
+    let mut subscribed_channels: Vec<String> = vec!["prices".to_string(), "positions".to_string(), "orders".to_string(), "signals".to_string(), "logs".to_string()];
     
     loop {
         tokio::select! {

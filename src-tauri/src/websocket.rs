@@ -1,4 +1,4 @@
-use crate::api::*;
+use crate::api::{*, BOT_STATE};
 use crate::models::*;
 use crate::ws_server::{WsServerState, broadcast_signal, broadcast_log as ws_broadcast_log};
 use std::sync::Arc;
@@ -37,7 +37,7 @@ pub async fn connect_to_bot_with_state(app: AppHandle, ws_state: Arc<WsServerSta
                 while let Some(msg) = read.next().await {
                     match msg {
                         Ok(Message::Text(text)) => {
-                            handle_message_with_state(&text, &app, &ws_state).await;
+                            handle_message_with_state(&text, &app, ws_state.clone()).await;
                         }
                         Ok(Message::Close(_)) => {
                             warn!("WebSocket closed by server");
@@ -61,7 +61,7 @@ pub async fn connect_to_bot_with_state(app: AppHandle, ws_state: Arc<WsServerSta
     }
 }
 
-async fn handle_message_with_state(text: &str, _app: &AppHandle, ws_state: &WsServerState) {
+async fn handle_message_with_state(text: &str, _app: &AppHandle, ws_state: Arc<WsServerState>) {
     // Try to parse as generic JSON first
     if let Ok(value) = serde_json::from_str::<serde_json::Value>(text) {
         let msg_type = value.get("type").and_then(|v| v.as_str());

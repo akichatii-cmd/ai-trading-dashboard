@@ -52,7 +52,7 @@ pub struct Position {
     pub open_time: DateTime<Utc>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum OrderSide {
     Buy,
     Sell,
