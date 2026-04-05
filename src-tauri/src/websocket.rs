@@ -82,14 +82,14 @@ async fn handle_message_with_state(text: &str, _app: &AppHandle, ws_state: Arc<W
                     // Транслируем в наш WebSocket сервер
                     broadcast_signal(ws_state.clone(), signal.clone()).await;
                     
+                    let action_str = match signal.action {
+                        SignalAction::Buy => "BUY",
+                        SignalAction::Sell => "SELL",
+                        SignalAction::Hold => "HOLD",
+                    };
+                    let symbol = signal.symbol.clone();
                     add_signal(signal).await;
-                    add_log(LogLevel::Info, &format!("New signal: {} {}", 
-                        match signal.action {
-                            SignalAction::Buy => "BUY",
-                            SignalAction::Sell => "SELL",
-                            SignalAction::Hold => "HOLD",
-                        }, 
-                        signal.symbol), "websocket").await;
+                    add_log(LogLevel::Info, &format!("New signal: {} {}", action_str, symbol), "websocket").await;
                 }
             }
             Some("position") => {
