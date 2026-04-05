@@ -51,6 +51,7 @@ ui/dist/
 *.json
 !package.json
 !Cargo.json
+!src-tauri/tauri.conf.json
 
 # Temporary files
 *.tmp

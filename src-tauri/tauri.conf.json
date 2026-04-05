@@ -1,0 +1,23 @@
+{
+  "build": {
+    "devPath": "http://localhost:3000",
+    "distDir": "../ui/dist"
+  },
+  "package": {
+    "productName": "AI Trading Dashboard",
+    "version": "0.1.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": true
+    },
+    "bundle": {
+      "active": false,
+      "identifier": "com.aitrading.dashboard"
+    },
+    "security": {
+      "csp": null
+    },
+    "windows": []
+  }
+}
