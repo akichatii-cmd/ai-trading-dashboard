@@ -1,7 +1,17 @@
 #!/bin/bash
 set -e
 
-echo "🚀 Setting up AI Trading Dashboard development environment..."
+echo "🚀 Setting up AI Trading Dashboard..."
+
+# Install Rust if not present
+if ! command -v cargo &> /dev/null; then
+    echo "🦀 Installing Rust..."
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    source "$HOME/.cargo/env"
+fi
+
+# Install targets
+rustup target add wasm32-unknown-unknown
 
 # Install system dependencies for Tauri
 echo "📦 Installing system dependencies..."
@@ -11,30 +21,15 @@ sudo apt-get install -y \
     libwebkit2gtk-4.0-dev \
     libappindicator3-dev \
     librsvg2-dev \
-    patchelf \
-    libssl-dev \
+    libsoup2.4-dev \
+    libjavascriptcoregtk-4.0-dev \
     pkg-config \
-    libayatana-appindicator3-dev
-
-# Install Rust targets
-echo "🦀 Installing Rust targets..."
-rustup target add wasm32-unknown-unknown
-rustup target add x86_64-pc-windows-gnu 2>/dev/null || true
+    libssl-dev
 
 # Install cargo tools
-echo "🛠️ Installing cargo tools..."
-cargo install trunk 2>/dev/null || echo "trunk already installed"
-cargo install tauri-cli 2>/dev/null || echo "tauri-cli already installed"
-cargo install cargo-watch 2>/dev/null || echo "cargo-watch already installed"
-
-# Setup git safe directory
-git config --global --add safe.directory /workspaces/$(basename "$PWD") 2>/dev/null || true
+cargo install trunk 2>/dev/null || true
+cargo install tauri-cli 2>/dev/null || true
 
 echo "✅ Setup complete!"
 echo ""
-echo "To build the project:"
-echo "  cd src-tauri"
-echo "  cargo build --release"
-echo ""
-echo "To run development server:"
-echo "  cd src-tauri && cargo run"
+echo "Run: cd src-tauri && cargo build --release"
