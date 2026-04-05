@@ -1,0 +1,21 @@
+[workspace]
+members = ["src-tauri", "ui"]
+resolver = "2"
+
+[workspace.dependencies]
+leptos = { version = "0.6", features = ["nightly"] }
+leptos_router = { version = "0.6", features = ["nightly"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1.35", features = ["full"] }
+rust_decimal = { version = "1.33", features = ["serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# The profile that makes dependencies fast again.
+# https://github.com/leptos-rs/leptos/releases/tag/v0.6.0
+[profile.wasm-release]
+inherits = "release"
+opt-level = 'z'
+lto = true
+codegen-units = 1
+panic = "abort"

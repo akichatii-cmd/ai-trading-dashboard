@@ -1,0 +1,56 @@
+[package]
+name = "desktop-dashboard-ui"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+leptos = { workspace = true, features = ["hydrate"] }
+leptos_router = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+rust_decimal = { workspace = true }
+chrono = { workspace = true }
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+js-sys = "0.3"
+web-sys = { version = "0.3", features = [
+    "console",
+    "Document",
+    "Element",
+    "HtmlElement",
+    "Window",
+    "MouseEvent",
+    "DragEvent",
+    "DataTransfer",
+]}
+
+# Tauri API
+serde-wasm-bindgen = "0.6"
+console_error_panic_hook = "0.1"
+gloo-timers = { version = "0.3", features = ["futures"] }
+log = "0.4"
+
+[package.metadata.leptos]
+# The name used by wasm-bindgen/cargo-leptos
+output_name = "desktop-dashboard"
+
+# The site root folder
+site-root = "dist"
+
+# The folder where all output is written
+target-site = "dist"
+
+# The tailwind input file
+style-file = "styles/main.css"
+
+# Assets source folder
+assets-dir = "public"
+
+# The IP and port to serve on
+site-addr = "127.0.0.1:3000"
+
+# Whether to automatically reload
+reload-port = 3001

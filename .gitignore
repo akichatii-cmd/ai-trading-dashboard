@@ -1,0 +1,58 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+target/
+
+# Cargo
+Cargo.lock
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Tailwind output
+ui/styles/output.css
+
+# Environment variables (sensitive!)
+.env
+.env.local
+.env.production
+
+# Certificates and keys
+*.pem
+*.key
+*.pfx
+*.p12
+
+# Build artifacts
+*.msi
+*.exe
+*.dmg
+*.AppImage
+*.deb
+*.rpm
+src-tauri/target/
+ui/dist/
+
+# Test data
+*.csv
+*.json
+!package.json
+!Cargo.json
+
+# Temporary files
+*.tmp
+*.temp
+.cache/

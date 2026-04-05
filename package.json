@@ -1,0 +1,12 @@
+{
+  "name": "ai-trading-dashboard",
+  "version": "5.0.0",
+  "description": "AI Trading Bot Desktop Dashboard",
+  "scripts": {
+    "tailwind": "tailwindcss -i ./ui/styles/main.css -o ./ui/styles/output.css --watch",
+    "build": "tailwindcss -i ./ui/styles/main.css -o ./ui/styles/output.css"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
