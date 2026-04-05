@@ -8,7 +8,7 @@ use uuid::Uuid;
 use serde::Deserialize;
 
 // Global state shared between API and WebSocket
-static BOT_STATE: Lazy<Arc<RwLock<SystemState>>> = Lazy::new(|| {
+pub static BOT_STATE: Lazy<Arc<RwLock<SystemState>>> = Lazy::new(|| {
     Arc::new(RwLock::new(SystemState {
         version: "5.0.0".to_string(),
         mode: TradingMode::Off,
